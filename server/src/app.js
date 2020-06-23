@@ -1,9 +1,10 @@
-console.log('hello');
 const express = require('express')
 // const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan');
-// const bodyParser = require('body-parser');
+const config = require('./config/config')
+
+// const db = require('./models/db');
 
 const app = express();
 
@@ -17,12 +18,8 @@ app.use(morgan('combined'))
 app.use(cors())
 
 
-app.post('/register', (req, res) => {
+require('./routes/routes')(app)
 
-    res.send({
-        // message: `Hello, User was registered`
-        message: `Hello ${req.body.email} User was registered`
-    })
+app.listen(process.env.PORT || config.port, () => {
+    console.log(`Server running on PORT ${config.port}`)
 })
-
-app.listen(process.env.PORT || 8081)
