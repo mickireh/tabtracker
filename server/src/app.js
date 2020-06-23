@@ -2,12 +2,19 @@ console.log('hello');
 const express = require('express')
 // const bodyParser = require('body-parser')
 const cors = require('cors')
-const morgan = require('morgan')
+const morgan = require('morgan');
+// const bodyParser = require('body-parser');
 
 const app = express();
 app.use(morgan('combined'))
-app.use(express.json())
 app.use(cors())
+
+// with express 4.16 (this is 4.17) body-parser is again included in express, but both should work
+app.use(express.json())
+// app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
+
 
 app.post('/register', (req, res) => {
     res.send({
