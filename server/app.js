@@ -17,12 +17,8 @@ app.use(morgan('combined'))
 app.use(cors())
 
 
-app.post('/register', (req, res) => {
-    res.send({
-      // message: `Hello, User was registered`
-      message: `Hello ${req.body.email}, User was registered`
-    })
-})
+
+require('./routes/routes')(app)
 
 db.sequelize.sync().then(() => {
   app.listen(process.env.PORT || 8081, () => {
