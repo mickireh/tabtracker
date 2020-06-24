@@ -1,9 +1,12 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <nav>
+      <ul>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/about">About</router-link></li>
+        <li><router-link to="/register">Register</router-link></li>
+      </ul>
+    </nav>
     <router-view />
   </div>
 </template>
@@ -17,8 +20,20 @@
   color: #2c3e50;
 }
 
-#nav {
+nav {
   padding: 30px;
+
+  ul {
+    margin:0;
+    padding:0;
+    list-style-type: none;
+  }
+
+  li {
+    display: inline-block;
+    padding:4px;
+    margin:10px;
+  }
 
   a {
     font-weight: bold;
