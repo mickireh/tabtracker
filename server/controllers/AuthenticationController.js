@@ -9,15 +9,14 @@ module.exports = {
     //     })
     // }
 
-    async register (req, res) {
-        try {
-            const user = await User.create(req.body)
+    function register (req, res) {
+        User.create(req.body).then(function(user) {
             res.send(user.toJSON())
-        } catch (err) {
-            res.status(400).send({
-                error: 'This email account is already in use.'
-            })
-        }
+        }).catch(function(err) {
+            let msg = JSON.stringify(err)
+            console.log(msg)
+            res.status(400).send(msg)
+        })
     }
 
     // async register (req, res) {
